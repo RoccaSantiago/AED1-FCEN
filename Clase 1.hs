@@ -66,7 +66,7 @@ algunoes0pm x 0 = True
 algunoes0pm _ _ = False
 
 --e) problema ambosson0(x,y:Q): Bool {
-    --requiere:{True}
+    --requiere:{True}S
     --asegura:{res = true <--> (x=0 Ʌ y=0)}
 
 ambosson0 :: Float -> Float -> Bool
@@ -79,19 +79,19 @@ ambosson0pm _ _ = False
 
 --f) problema mismointervalo(x,y:R):Bool{
     --requiere:{True}
-    --Asegura:{res = true <--> ( ( (x:(-inf,3]) V (x:(3,7]) V (x:(7,+inf) ) Ʌ ( (x:(-inf,3]) V (x:(3,7]) V (x:(7,+inf) ) )}    -------> Como pongo intervalos de inf en la formalizacion}}
+    --Asegura:{res = true <--> ( ( (x:(-inf,3]) V (x:(3,7]) V (x:(7,+inf) ) Ʌ ( (x:(-inf,3]) V (x:(3,7]) V (x:(7,+inf) ) )}    
 
 
 
 --g) porblema sumadistintos(x,y,z:Z):Z{
-    --requiere:{(x!=y) Ʌ x!=z Ʌ z!=y }
-    --asegura:{res = x + y + z}}
+    --requiere:{True}
+    --asegura:{ ( (x=y) --> (res=z+x) ) Ʌ ( (z=y) --> (res=z+x) ) Ʌ ( (x=y) --> (res=z+x) ) Ʌ ( ( (x != y) Ʌ (x!=z) Ʌ (z!=y) ) --> (res = x+y+z) ) }}
 
 sumadistintos :: Integer -> Integer -> Integer -> Integer
 sumadistintos x y z |  y==z && z==y && z==x = undefined
-sumadistintos x y z |  x==y = z 
-sumadistintos x y z |  x==z = y
-sumadistintos x y z |  y==z = x
+sumadistintos x y z |  x==y = z + x
+sumadistintos x y z |  x==z = y + x
+sumadistintos x y z |  y==z = x + y
 sumadistintos x y z |  otherwise = x + y + z 
 
 --h) problema esmultiplode(x,y:N):Bool{
@@ -99,5 +99,5 @@ sumadistintos x y z |  otherwise = x + y + z
     --asegura:{res = True <--> ((y mod x) = 0)}}
 
 esmultiplode :: Integer -> Integer -> Bool
---esmultiplode x y | ymodx == 0 = True -------> Buscar funcion MOD
+esmultiplode x y | MOD x y == 0 = True 
 esmultiplode x y | otherwise = False
