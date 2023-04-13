@@ -85,7 +85,8 @@ ambosson0pm _ _ = False
 
 --g) porblema sumadistintos(x,y,z:Z):Z{
     --requiere:{True}
-    --asegura:{ ( (x=y) --> (res=z+x) ) Ʌ ( (z=y) --> (res=z+x) ) Ʌ ( (x=y) --> (res=z+x) ) Ʌ ( ( (x != y) Ʌ (x!=z) Ʌ (z!=y) ) --> (res = x+y+z) ) }}
+    --asegura:{ ( (x=y) Ʌ (x=!z)--> (res=z+x) ) Ʌ ( ((z=y) Ʌ (z!=x)) --> (res=z+x) ) Ʌ ( ((x=y)    
+Ʌ (x=!z)) --> (res=z+x) ) Ʌ ( ( (x != y) Ʌ (x!=z) Ʌ (z!=y) ) --> (res = x+y+z) ) }}
 
 sumadistintos :: Integer -> Integer -> Integer -> Integer
 sumadistintos x y z |  y==z && z==y && z==x = undefined
