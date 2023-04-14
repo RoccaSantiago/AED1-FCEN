@@ -1,4 +1,4 @@
--- ¡IMPORTANT!  ɅɅɅ                                                                                                       
+-- ¡IMPORTANT!  Ʌ , ∃                                                                                                      
 
 --Ejercicio 1
 f :: Integer -> Integer
@@ -77,16 +77,20 @@ ambosson0pm :: Float -> Float -> Bool
 ambosson0pm 0 0 = True
 ambosson0pm _ _ = False
 
---f) problema mismointervalo(x,y:R):Bool{
-    --requiere:{True}
-    --Asegura:{res = true <--> ( ( (x:(-inf,3]) V (x:(3,7]) V (x:(7,+inf) ) Ʌ ( (x:(-inf,3]) V (x:(3,7]) V (x:(7,+inf) ) )}    
+--f) - problema mismointervalo(x,y:R): Booll
+-- requiere: [True)
+-- Asegura: {( (res=True) <--> ((x<=3) Ʌ  (y<=3))) V ((res = True) <--> ((3<X<=7) Ʌ (3<y<=7)) V  ((res = True) <--> (7<x) Ʌ (7<y)) }}
 
-
-
+mismointervalo :: Float -> Float -> Bool
+mismointervalo x y |  (x<=3) && (y<=3) = True
+                   |  (3<x && x<=7) && (3<y && y<=7) = True 
+                   |  (x>7) && (y>7) = True 
+                   |  otherwise = False
+                 
 --g) porblema sumadistintos(x,y,z:Z):Z{
     --requiere:{True}
-    --asegura:{ ( (x=y) Ʌ (x=!z)--> (res=z+x) ) Ʌ ( ((z=y) Ʌ (z!=x)) --> (res=z+x) ) Ʌ ( ((x=y)    
-Ʌ (x=!z)) --> (res=z+x) ) Ʌ ( ( (x != y) Ʌ (x!=z) Ʌ (z!=y) ) --> (res = x+y+z) ) }}
+    --asegura:{ ( (x=y) Ʌ (x=!z)--> (res=z+x) ) Ʌ ( ((z=y) Ʌ (z!=x)) -->  (res=z+x) ) Ʌ ( ((x=y)    
+    --Ʌ (x=!z)) --> (res=z+x) ) Ʌ ( ( (x != y) Ʌ (x!=z) Ʌ (z!=y) ) --> (res = x+y+z) ) }}
 
 sumadistintos :: Integer -> Integer -> Integer -> Integer
 sumadistintos x y z |  y==z && z==y && z==x = undefined
@@ -95,10 +99,34 @@ sumadistintos x y z |  x==z = y + x
 sumadistintos x y z |  y==z = x + y
 sumadistintos x y z |  otherwise = x + y + z 
 
---h) problema esmultiplode(x,y:N):Bool{
-    --requiere: {True}
+--h) problema esmultiplode(x,y:Z):Bool{
+    --requiere: {x>0 Ʌ y>0}
     --asegura:{res = True <--> ((y mod x) = 0)}}
 
 esmultiplode :: Integer -> Integer -> Bool
-esmultiplode x y | MOD x y == 0 = True 
+esmultiplode x y | x>0 && (y>0) && (mod x y == 0) = True 
 esmultiplode x y | otherwise = False
+
+--g) problema digitoUnidades(x:Z):Z{
+    --Asegura:{x>0}
+    --Requiere:{(res = (x mod 10)) Ʌ (res>0)}
+    --}
+
+digitoUnidades :: Integer -> Integer 
+digitoUnidades x | x>0 = (mod x 10)
+
+--g) problema digitoDecena(x:Z):Z{
+    --Asegura:{x>0}
+    --Requiere:{(res = (x mod 100)) Ʌ (res>0) }
+--}
+
+digitoDecena :: Integer -> Integer
+digitoDecena x | (x>0) = (x `div` 10) `mod` 10
+
+--4) a) problema prodInt( x,y:RxR): R {
+    --Requiere:{True}
+    --Asegura:{res = x1.y1 + x2y2}
+--}
+
+prodInt :: (Float,Float) -> (Float,Float) -> Float
+prodInt (x1,x2) (y1,y2) = x1*y1 + x2*y2
