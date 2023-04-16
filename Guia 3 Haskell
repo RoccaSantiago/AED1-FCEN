@@ -33,7 +33,7 @@ k x = g(f(x))
 
 absoluto :: Integer -> Integer
 absoluto entero | entero<0 = (-entero)
-absoluto entero | otherwise = entero
+                | otherwise = entero
 
 -- b) problema MaximoAbsoluto(x,y:Z):Z {
     --requiere: {True}
@@ -41,7 +41,7 @@ absoluto entero | otherwise = entero
 
 maximoabsoluto :: Integer -> Integer -> Integer
 maximoabsoluto x y | x>=y = absoluto x
-maximoabsoluto x y | y>x = absoluto y
+                   | y>x = absoluto y
 
 --c) problema Maximo3(x,y,z:Z): Z{
     --requiere:{true}
@@ -49,8 +49,8 @@ maximoabsoluto x y | y>x = absoluto y
 
 maximo3 :: Integer -> Integer -> Integer -> Integer
 maximo3 x y z | x>=y && x>=z = x
-maximo3 x y z | y>=x && y>=z = y
-maximo3 x y z | otherwise = z
+             | y>=x && y>=z = y
+              | otherwise = z
 
 --d) problema algunoes0(x,y:Q): bool{
     --requiere: {True}
@@ -58,7 +58,7 @@ maximo3 x y z | otherwise = z
 
 algunoes0 :: Float -> Float -> Bool
 algunoes0 x y | x == 0 || y==0 = True
-algunoes0 x y | otherwise = False
+              | otherwise = False
 
 algunoes0pm :: Float -> Float -> Bool
 algunoes0pm 0 y = True
@@ -71,7 +71,7 @@ algunoes0pm _ _ = False
 
 ambosson0 :: Float -> Float -> Bool
 ambosson0 x y | x == 0 && y==0 = True
-ambosson0 x y | otherwise = False
+              | otherwise = False
 
 ambosson0pm :: Float -> Float -> Bool
 ambosson0pm 0 0 = True
@@ -94,10 +94,10 @@ mismointervalo x y |  (x<=3) && (y<=3) = True
 
 sumadistintos :: Integer -> Integer -> Integer -> Integer
 sumadistintos x y z |  y==z && z==y && z==x = undefined
-sumadistintos x y z |  x==y = z + x
-sumadistintos x y z |  x==z = y + x
-sumadistintos x y z |  y==z = x + y
-sumadistintos x y z |  otherwise = x + y + z 
+                    |  x==y = z + x
+                    |  x==z = y + x
+                    |  y==z = x + y
+                    |  otherwise = x + y + z 
 
 --h) problema esmultiplode(x,y:Z):Bool{
     --requiere: {x>0 Ʌ y>0}
@@ -105,7 +105,7 @@ sumadistintos x y z |  otherwise = x + y + z
 
 esmultiplode :: Integer -> Integer -> Bool
 esmultiplode x y | x>0 && (y>0) && (mod x y == 0) = True 
-esmultiplode x y | otherwise = False
+                 | otherwise = False
 
 --g) problema digitoUnidades(x:Z):Z{
     --Asegura:{x>0}
@@ -130,3 +130,86 @@ digitoDecena x | (x>0) = (x `div` 10) `mod` 10
 
 prodInt :: (Float,Float) -> (Float,Float) -> Float
 prodInt (x1,x2) (y1,y2) = x1*y1 + x2*y2
+
+--b) problema todomenor(x,y:RxR):Bool {
+    --Requiera:{True}
+    --Asegura:{res = True <--> ((x1<y1) Ʌ (X2<y2))}
+--}
+
+todomenor :: (Float,Float)->(Float,Float)->Bool
+todomenor (v1 ,v2) (u1,u2) | v1<u1 && v2<u2 =True
+                           | otherwise = False
+
+--c) problema distanciapuntos(( x,y:RxR):R) {
+    --Requiere:{True}
+    --Asegura:{(res=((x1-y1)**2+(x2-y2)**2)**0,5) Ʌ (res >= 0) }
+--}
+distanciapuntos :: (Num t, Floating t, Ord t) => (t,t) -> (t,t) -> t
+distanciapuntos (v1 , v2) (w1, w2) = ((v1-w1)**2 + (v2-w2)**2)**0.5
+
+--d) problema sumaterna(x:ZxZxZ):Z{
+    --Requiere:{x1>0 Ʌ x2>0 Ʌ x3>0}
+    --Asegura:{res= x1 + x2 + x3}}
+
+sumaterna :: (Integer, Integer,Integer) -> Integer
+sumaterna (x,y,z) = x + y + z   
+
+--e)problema  sumarsolomultiplos(x:ZxZxZ y:Z):Z{
+    --Requiere:{y>0}
+    --Asegura:{res = ∑(i = 1,3) if esmultiplode(xi y) then xi else 0 fi}}
+--}
+
+--problema esmutliplo(x,y:Z): Bool {
+    --Requiere: {y>0}
+    --Asegura: {res= True <--> (x mod y = 0) }
+--}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------PREGUNTAR---------------------------------------------
+--Es necesario aclarar que la 4 variable tiene que ser mayor a 0 en una guarda o ya por la espeficacion 
+-- no se le puede meter un input no natural
+--Manera mas optima
+
+sumarsolomultiplos :: (Integer,Integer,Integer) -> Integer -> Integer
+sumarsolomultiplos (x,y,z) a | ssmesmultiplo x a  && ssmesmultiplo y a  && ssmesmultiplo z a  = x + y + z
+                             | not(ssmesmultiplo x a) && ssmesmultiplo y a && ssmesmultiplo z a  = y + z
+                             | ssmesmultiplo x a && not(ssmesmultiplo y a) && ssmesmultiplo z a  = x + z
+                             | ssmesmultiplo x a  && ssmesmultiplo y a && not(ssmesmultiplo z a) = x + y
+                             | not(ssmesmultiplo x a) && not(ssmesmultiplo y a) && ssmesmultiplo z a  = z
+                             | ssmesmultiplo x a && not(ssmesmultiplo y a) && not(ssmesmultiplo z a)  = x
+                             | not(ssmesmultiplo x a) && ssmesmultiplo y a && not(ssmesmultiplo z a)  = y
+                             | otherwise = 0
+
+ssmesmultiplo :: Integer -> Integer -> Bool
+ssmesmultiplo x y | mod x y == 0 = True
+                  | otherwise = False
+
+--f) problema posprimerpar(x:ZxZxZ): Z{
+    --Requiere:{x1>0 Ʌ x2>0 Ʌ x3>0}
+    --Asegura: {(espar(x1) --> res=0) Ʌ (espar(x2))-->res=1 Ʌ (espar(x3)-->res=2) Ʌ ((not(espar(x1) Ʌ espar(x2) Ʌ espar(x3)) --> res = 4) } 
+--}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------PREGUNTAR SI EN EL ASEGURA ES Y O O EN EL ULTIMO IMPLICA CON EL NOT
+--problema espar(x:Z):Bool {
+    --requiere:{x>0}
+    --Asegura:{res=True<-->(x mod 2=0)}
+--}
+
+posprimerpar :: (Integer,Integer,Integer) -> Integer
+posprimerpar (x,y,z) | espar x = 0
+                     | espar y = 1
+                     | espar z = 2
+                     | otherwise = 4
+
+espar :: Integer -> Bool
+espar x | mod x 2 == 0 = True
+        | otherwise = False              
+
+--g) ---------------------------------------------------------------------------------------------------------------------------------------------------NO SE HACER LA ESPECIFICACION PREGUNTAR
+
+crearpar ::(Eq a, Eq b) => a -> b -> (a,b)
+crearpar a b = (a,b)
+ 
+ --h)---------------------------------------------------------------------------------------------------------------------------------------------------NO SE HACER LA ESPECIFICACION PREGUNTAR
+
+invertir :: (Eq a, Eq b) => (a,b) ->(b,a)
+invertir (a,b) = (b,a)
