@@ -94,9 +94,47 @@ f3 1 q = q + q^2
 f3 n q = q^(2*n -1) + q^(2*n) + f3 (n-1) q
 
 --d)
+f4 :: Integer -> Integer -> Integer
+f4 n q = f4aux (2 * n) q n
 
+f4aux :: Integer -> Integer -> Integer -> Integer
+f4aux n q i | i == n = q^n
+            | otherwise = q^n + f4aux (n - 1) q i
 
+--11) a)
 
+eAprox :: Integer -> Float
+eAprox 0 = 1
+eAprox n =  ( 1 / factorial (fromIntegral n) ) + eAprox (n-1)
 
+factorial :: Float -> Float
+factorial 0 = 1
+factorial n = n * factorial (n-1)
 
+--b)
 
+e :: Float
+e = eAprox 10
+
+--12)
+
+raizDe2Aprox :: Integer ->Float
+raizDe2Aprox n = auxSus n - 1
+
+auxSus :: Integer -> Float
+auxSus 1 = 2
+auxSus n = 2 + (1 / (auxSus (n-1)))
+
+--13)
+
+f :: Integer -> Integer -> Integer
+f 1 m = faux 1 m 
+f n m = f (n-1) m + faux n m
+
+faux :: Integer -> Integer -> Integer
+faux n 1 = n
+faux n m = n^m + faux n (m-1)
+
+--14)
+
+sumaPotencias :: Integer ->Integer ->Integer ->Integer
