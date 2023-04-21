@@ -56,7 +56,9 @@ auxSumaDigitos x | x==0 || x<0 = 0
 auxContador :: Int-> Int
 auxContador x = length (show (abs x))
 
---Ejercicio 8 completo ```iesimoDigito :: Integer -> Integer -> Integer
+--8)
+
+iesimoDigito :: Integer -> Integer -> Integer
 iesimoDigito n i = (n `div` 10^(cantDigitos(n)-i)) `mod` 10
 
 cantDigitos :: Integer -> Integer
@@ -64,48 +66,37 @@ cantDigitos n | n == 0 = 1
               | otherwise = contarDigitos n
               where
                 contarDigitos 0 = 0
-                contarDigitos n = 1 + contarDigitos (n `div` 10)```
+                contarDigitos n = 1 + contarDigitos (n `div` 10)
 
-Ejercicio 9 completo
-```esCapicua :: Integer -> Bool
-esCapicua n = n == invertir n
 
-invertir :: Integer -> Integer
-invertir n | n < 10 = n
-           | otherwise = resto * 10^(cantDigitos cociente) + invertir cociente
-  where resto = n `mod` 10
-        cociente = n `div` 10
-
-cantDigitos :: Integer -> Integer
-cantDigitos n | n == 0 = 1
-              | otherwise = contarDigitos n
-              where
-                contarDigitos 0 = 0
-                contarDigitos n = 1 + contarDigitos (n `div` 10)```
+--9)
+--esCapicua :: 
 
 
 
---Ejercicio 10 incompleto
+--10) a)
 
-```-- ejercicio A
 f1 :: Integer -> Integer
 f1 0 = 1
 f1 x = 2^x + f1 (x-1)
 
--- ejercicio B
-f2 :: Integer -> Float -> Float
+--b)
+
+f2 :: Integer -> Float -> Float 
 f2 1 q = q
 f2 n q = q^n + f2 (n-1) q
 
--- Ejercicio C
-f3 :: Integer -> Float -> Float
+--c) 
+
+f3 :: Integer -> Float -> Float 
 f3 0 q = 0
-f3 1 q = q^2 + q
-f3 n q = q^(2*n) + f2 (2*n-1) q
+f3 1 q = q + q^2
+f3 n q = q^(2*n -1) + q^(2*n) + f3 (n-1) q
 
--- Ejercicio C, otra forma más piola
-f3_2 1 q = q + q^2
-f3_2 n q = f3_2 (n-1) q + q^(2*n -1) + q^(2*n)
+--d)
 
--- F4 PREGUNTAR XD!!!```
- 
+
+
+
+
+
