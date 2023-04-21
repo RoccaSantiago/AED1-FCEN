@@ -105,7 +105,7 @@ f4aux n q i | i == n = q^n
 
 eAprox :: Integer -> Float
 eAprox 0 = 1
-eAprox n =  ( 1 / factorial (fromIntegral n) ) + eAprox (n-1)
+eAprox n =  ( 1 / factorial (fromInteger n) ) + eAprox (n-1)
 
 factorial :: Float -> Float
 factorial 0 = 1
@@ -138,3 +138,23 @@ faux n m = n^m + faux n (m-1)
 --14)
 
 sumaPotencias :: Integer ->Integer ->Integer ->Integer
+sumaPotencias q 1 b = sumaPotenciasaux q 1 b
+sumaPotencias q a b = sumaPotenciasaux q a b + sumaPotencias q (a-1) b
+
+sumaPotenciasaux :: Integer -> Integer -> Integer ->Integer
+sumaPotenciasaux q a 1 = q^(a+1)  
+sumaPotenciasaux q a b = q^(b+a) + sumaPotenciasaux q a (b-1)
+
+--15) 
+
+sumaRacionales :: Integer -> Integer -> Float
+sumaRacionales 1 m = sumaRacionalesaux 1 m
+sumaRacionales n m = sumaRacionalesaux n m + sumaRacionales (n-1) m
+
+sumaRacionalesaux :: Integer -> Integer -> Float
+sumaRacionalesaux n 1 = fromInteger n
+sumaRacionalesaux n m = (/) (fromInteger n) (fromInteger m) + sumaRacionalesaux n (m-1)
+
+--16)
+
+
