@@ -6,6 +6,5 @@ main = do {
   }
 
 sumaDigitos :: Int -> Int
--- Completar la definición de la función
-
--- Pueden agregan las funciones que consideren necesarias
+sumaDigitos 0 = 0
+sumaDigitos x = mod x 10 + sumaDigitos (div x 10)
