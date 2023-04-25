@@ -189,6 +189,20 @@ eSIDPaux x s i | x==s = True
                | x<s = False 
                | otherwise = eSIDPaux x (s + (nEsimoPrimo (i+1))) (i+1)
 
---20
-tomaValorMax :: Int ->Int ->Int
-tomaValorMax n1 n2 sum
+--20)
+
+tomaValorMax :: Integer -> Integer -> Integer 
+tomaValorMax n1 n2 =  tomaValorMaxComparacion n1 n2 n1
+
+tomaValorMaxComparacion :: Integer -> Integer -> Integer -> Integer
+tomaValorMaxComparacion n1 n2 i | i == n2 = n2 
+                                | sumaDivisores i > sumaDivisores n2 = i
+                                | otherwise = tomaValorMaxComparacion n1 n2 (i+1)
+                    
+sumaDivisores :: Integer -> Integer
+sumaDivisores m = sumaDivisoresaux m 1
+
+sumaDivisoresaux :: Integer -> Integer ->Integer
+sumaDivisoresaux m i | m == i = m 
+                       | mod m i == 0 = i + sumaDivisoresaux m (i+1) 
+                       | otherwise = sumaDivisoresaux m (i+1) 
