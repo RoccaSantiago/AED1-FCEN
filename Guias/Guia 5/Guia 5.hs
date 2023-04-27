@@ -84,5 +84,9 @@ mismosElementosaux [] y = True
 mismosElementosaux (x:xs) y | pertenece x y = True && mismosElementos xs y
                             | otherwise = False 
 
+--9) FALTA ARREGLAR
 
-
+capicua :: (Eq t) => [t] -> Bool
+capicua [] = True
+capicua (x:xs) | x == ultimo (x:xs) = True && capicua (quitar x xs)
+               | otherwise = False
