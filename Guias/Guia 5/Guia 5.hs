@@ -44,3 +44,26 @@ todosDistintos :: (Eq t) => [t] -> Bool
 todosDistintos (x:xs)| longitud (x:xs) == 1 = True
                      | x /= head (xs) = True && todosDistintos xs
                      | otherwise = False
+
+--4) 
+
+hayRepetidos :: (Eq t) => [t] -> Bool 
+hayRepetidos (x:xs) | longitud xs == 1 = (x == head xs)
+                    | x == head (xs) = True
+                    | otherwise = hayRepetidos xs   
+
+--5) 
+
+quitar :: (Eq t) => t -> [t] -> [t]
+quitar a [] = []
+quitar a (x:xs) | a == x = xs 
+                | otherwise = [x] ++ quitar a xs
+
+--6)
+
+quitarTodos :: (Eq t) => t -> [t] -> [t]
+quitarTodos a [] = []
+quitarTodos a (x:xs) | a==x = quitarTodos a xs
+                     | otherwise = [x] ++ quitarTodos a xs
+
+--7)
