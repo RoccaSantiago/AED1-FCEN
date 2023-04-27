@@ -67,3 +67,22 @@ quitarTodos a (x:xs) | a==x = quitarTodos a xs
                      | otherwise = [x] ++ quitarTodos a xs
 
 --7)
+
+eliminarRepetidos :: (Eq t) => [t] -> [t]
+eliminarRepetidos [] = []
+eliminarRepetidos (x:xs) | pertenece x xs = eliminarRepetidos xs
+                         | otherwise = [x] ++ eliminarRepetidos xs
+                        
+--8) 
+
+mismosElementos :: (Eq t) => [t] -> [t] -> Bool
+mismosElementos [] [] = True
+mismosElementos x y = mismosElementosaux (eliminarRepetidos x) (eliminarRepetidos y)
+
+mismosElementosaux :: (Eq t) => [t] -> [t] -> Bool
+mismosElementosaux [] y = True
+mismosElementosaux (x:xs) y | pertenece x y = True && mismosElementos xs y
+                            | otherwise = False 
+
+
+
