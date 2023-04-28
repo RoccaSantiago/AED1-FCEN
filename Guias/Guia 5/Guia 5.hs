@@ -84,9 +84,90 @@ mismosElementosaux [] y = True
 mismosElementosaux (x:xs) y | pertenece x y = True && mismosElementos xs y
                             | otherwise = False 
 
---9) FALTA ARREGLAR
+--9)
 
 capicua :: (Eq t) => [t] -> Bool
 capicua [] = True
-capicua (x:xs) | x == ultimo (x:xs) = True && capicua (quitar x xs)
+capicua (x:xs) | longitud xs == 0 = True 
+               |x == (head (reverso xs)) = True && capicua (quitar x xs)
                | otherwise = False
+
+--Ejercicio 3)
+
+--1)
+
+sumatoria :: [Integer] -> Integer
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
+--2)
+
+productoria :: [Integer] -> Integer
+productoria [] = 1
+productoria (x:xs) = x * productoria xs
+
+--3)
+
+maximo :: [Integer] -> Integer
+maximo [x] = x
+maximo (x:y:xs) | x>y = maximo (x:xs)
+                | otherwise = maximo (y:xs)
+
+--4) 
+
+sumarN :: Integer -> [Integer] -> [Integer]
+sumarN n [x] = [x+n]
+sumarN n (x:xs) = [x+n] ++ (sumarN n xs) 
+
+--5)
+
+sumarElPrimero :: [Integer] -> [Integer]
+sumarElPrimero (x:xs) = sumarN x (x:xs)
+
+--6) 
+
+sumarElUltimo :: [Integer] -> [Integer]
+sumarElUltimo (x:xs) = sumarN (ultimo (x:xs)) (x:xs)
+
+--7)
+
+pares :: [Integer] -> [Integer]
+pares [] = []
+pares (x:xs) | mod x 2 == 0 = [x] ++ pares xs
+             | otherwise = pares xs
+
+--8)
+
+multiplosDeN :: Integer -> [Integer] -> [Integer]
+multiplosDeN n [] = []
+multiplosDeN n [0] = []
+multiplosDeN n (x:xs) | mod x n == 0 = [x] ++ multiplosDeN n xs
+                      | otherwise = multiplosDeN n xs
+
+--9)
+
+ordenar :: [Integer] -> [Integer]
+ordenar [] = []
+ordenar (x:xs) | longitud xs == 0 = [x]
+               | x <= minimo xs = [x] ++ ordenar xs
+               | otherwise = ordenar (xs++[x])
+
+minimo :: [Integer] -> Integer
+minimo [x] = x
+minimo (x:y:xs) | x <= y = minimo (x:xs)
+                | otherwise = minimo (y:xs)
+
+--Ejercicio 4)
+
+--1)
+
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [x] = [x]
+sacarBlancosRepetidos (x:y:xs) | x == ' ' &&  y==' ' =  [' '] ++ sacarBlancosRepetidos xs
+                               | otherwise = [x] ++ sacarBlancosRepetidos (y:xs)
+
+
+--2)
+
+
+    
