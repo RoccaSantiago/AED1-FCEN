@@ -162,12 +162,17 @@ minimo (x:y:xs) | x <= y = minimo (x:xs)
 --1)
 
 sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
 sacarBlancosRepetidos [x] = [x]
-sacarBlancosRepetidos (x:y:xs) | x == ' ' &&  y==' ' =  [' '] ++ sacarBlancosRepetidos xs
+sacarBlancosRepetidos (x:y:xs) | x == ' ' && y == ' ' = [' '] ++ sacarBlancosRepetidos xs
                                | otherwise = [x] ++ sacarBlancosRepetidos (y:xs)
-
 
 --2)
 
+contarPalabras :: [Char] -> Integer
+contarPalabras [] = 0
+contarPalabras (x:xs) = 1 + contarPalabras xs
 
-    
+--3)
+
+palabraMasLarga
