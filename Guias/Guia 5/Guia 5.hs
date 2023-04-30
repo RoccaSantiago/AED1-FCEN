@@ -175,4 +175,28 @@ contarPalabras (x:xs) = 1 + contarPalabras xs
 
 --3)
 
-palabraMasLarga
+palabraMasLarga :: [Char] -> [Char]
+palabraMasLarga a = palabraMasLargacomparador (palabras a) 
+
+palabraMasLargacomparador :: [[Char]] -> [Char]
+palabraMasLargacomparador [] =[]
+palabraMasLargacomparador (x:xs) | longitud x == maximo (palabraMasLargaaux (x:xs)) = x
+                                 | otherwise = palabraMasLargacomparador xs
+
+palabraMasLargaaux :: [[Char]] -> [Integer]
+palabraMasLargaaux [] = []
+palabraMasLargaaux (x:xs) = [longitud x] ++ palabraMasLargaaux xs
+            
+--4)
+
+palabras :: [Char] -> [[Char]]
+palabras a = palabrasaux a []
+
+palabrasaux :: [Char] -> [Char] -> [[Char]]
+palabrasaux [] b = b : []
+palabrasaux (x:xs) b | x == ' ' =  b : palabrasaux xs []
+                     | otherwise =  palabrasaux xs (b ++ [x])
+
+--5)
+
+aplanar :: [[Char]]
