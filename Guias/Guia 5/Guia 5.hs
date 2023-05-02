@@ -223,3 +223,80 @@ nBlancosaux n = [' '] ++ nBlancosaux (n-1)
 --1)
 
 nat2bin :: Integer -> [Integer]
+nat2bin 0 = []
+nat2bin x =  nat2bin (div x 2) ++ [mod x 2] 
+
+--2)
+
+bin2nat :: [Integer] -> Integer
+bin2nat (x:[]) = x
+bin2nat (x:xs) = x*(2^(longitud (x:xs)-1)) + bin2nat xs 
+
+--3)
+
+nat2hex :: Integer -> [Char]
+nat2hex 0 = []
+nat2hex x = nat2hex (div x 16) ++ [mapN2Hex (mod x 16)]
+
+mapN2Hex :: Integer -> Char
+mapN2Hex 0 = '0'
+mapN2Hex 1 = '1'
+mapN2Hex 2 = '2'
+mapN2Hex 3 = '3'
+mapN2Hex 4 = '4'
+mapN2Hex 5 = '5'
+mapN2Hex 6 = '6'
+mapN2Hex 7 = '7'
+mapN2Hex 8 = '8'
+mapN2Hex 9 = '9'
+mapN2Hex 10 = 'A'
+mapN2Hex 11 = 'B'
+mapN2Hex 12 = 'C'
+mapN2Hex 13 = 'D'
+mapN2Hex 14 = 'E'
+mapN2Hex 15 = 'F'
+
+--4)
+
+sumaAcumulada :: (Num t) => [t] -> [t]
+sumaAcumulada x = sumaAcumuladaAux x 0
+
+sumaAcumuladaAux :: (Num t) => [t] -> t -> [t]
+sumaAcumuladaAux (x:xs) c | longitud xs == 0 = [c+x]
+                          | otherwise = [c+x] ++ sumaAcumuladaAux xs (c+x)
+
+--5)
+
+descomponerEnPrimos :: [Integer] -> [[Integer]]
+descomponerEnPrimos (x:[]) = [(descomponerEnPrimosaux x 2)]
+descomponerEnPrimos (x:xs) = [(descomponerEnPrimosaux x 2)] ++ descomponerEnPrimos xs 
+
+descomponerEnPrimosaux :: Integer -> Integer -> [Integer]
+descomponerEnPrimosaux x a | x<a = []
+                              | mod x a == 0 = [a] ++ descomponerEnPrimosaux (div x a) a
+                              | otherwise = descomponerEnPrimosaux x (a+1)
+
+-- Ejercicio 6)
+type Set = []
+
+--1)
+
+agregarATodos :: Integer -> Set (Set Integer) -> Set (Set Integer)
+agregarATodos n (x:[]) = [x ++ [n]]    
+agregarATodos n (x:xs) = [x ++ [n]] ++ agregarATodos n xs
+ 
+--2)
+
+partes :: Integer -> Set (Set Integer)
+partes 1 = [[],[1]]
+partes n = agregarATodos n (partes (n-1)) ++ partes (n-1)
+
+--3)
+
+productoCartesiano :: Set Integer -> Set Integer -> Set (Integer, Integer)
+productoCartesiano (x:[]) (y:ys) = cartesianoAux x (y:ys)
+productoCartesiano (x:xs) (y:ys) = cartesianoAux x (y:ys) ++ productoCartesiano xs (y:ys)
+
+cartesianoAux :: Integer -> Set Integer -> Set (Integer,Integer)
+cartesianoAux x (y:[]) = [(x,y)]
+cartesianoAux x (y:ys) = [(x,y)] ++ cartesianoAux x ys
