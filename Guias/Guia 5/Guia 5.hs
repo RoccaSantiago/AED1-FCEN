@@ -199,4 +199,27 @@ palabrasaux (x:xs) b | x == ' ' =  b : palabrasaux xs []
 
 --5)
 
-aplanar :: [[Char]]
+aplanar :: [[Char]] -> [Char]
+aplanar (x:[]) = x
+aplanar (x:xs) = x ++ aplanar xs
+
+--6)
+aplanarConBlancos :: [[Char]] -> [Char]
+aplanarConBlancos (x:[]) = x
+aplanarConBlancos (x:xs) = x ++ [' '] ++ aplanarConBlancos xs
+
+--7)
+
+aplanarConNBlancos :: [[Char]] -> Integer -> [Char]
+aplanarConNBlancos (x:[]) n = x
+aplanarConNBlancos (x:xs) n = x ++ nBlancosaux n ++ aplanarConNBlancos xs n
+
+nBlancosaux :: Integer -> [Char]
+nBlancosaux 0 = []
+nBlancosaux n = [' '] ++ nBlancosaux (n-1) 
+
+--Ejercicio 5)
+
+--1)
+
+nat2bin :: Integer -> [Integer]
