@@ -293,10 +293,10 @@ partes n = agregarATodos n (partes (n-1)) ++ partes (n-1)
 
 --3)
 
-productoCartesiano :: Set Integer -> Set Integer -> Set (Integer, Integer)
+productoCartesiano :: (Eq t) => Set t -> Set t -> Set (t, t)
 productoCartesiano (x:[]) (y:ys) = cartesianoAux x (y:ys)
 productoCartesiano (x:xs) (y:ys) = cartesianoAux x (y:ys) ++ productoCartesiano xs (y:ys)
 
-cartesianoAux :: Integer -> Set Integer -> Set (Integer,Integer)
+cartesianoAux :: (Eq t) =>  t -> Set t -> Set (t,t)
 cartesianoAux x (y:[]) = [(x,y)]
 cartesianoAux x (y:ys) = [(x,y)] ++ cartesianoAux x ys
