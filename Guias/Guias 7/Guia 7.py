@@ -95,5 +95,97 @@ def es_bisiesto(año):
 
 #Ejercicio 4
 
-#1
+#1)
 
+def peso_pino(metros:float):
+    if metros<=3:
+        return 300*metros
+    else:
+        return (metros-3)*200 + 3*300
+
+#2)
+
+def es_peso_util(peso:int):
+    if peso>=400 and peso<=1000:
+        return True
+    else:
+        return False
+
+#3)
+
+def sirve_pino(altura:float):
+    if altura>= 4/3 and altura<=7/2:
+        return True 
+    else: 
+        return False
+
+#4)
+
+def sirve_pino(altura:float,peso:int):
+    if sirve_pino(altura) and es_peso_util(peso):
+        return True
+    else:
+        return False
+    
+#5)
+
+#1)
+
+# problema devolverElDobleSiEsPar(n:Z):Z{
+#   Requiere: {True}
+#   Asegura :{(mod n 2 = 0 -> res = n*2) ʌ mod n 2 /= 0 -> res = n}
+# }
+
+def devolver_el_doble_si_es_par(un_numero:int):
+    if un_numero%2==0:
+        return un_numero*2
+    else: 
+        return un_numero
+
+#2)
+
+#problema devolvervalorsiesparsinoelquesigue(n:Z):Z{
+#   Requiere: {True}
+#   Asegura: {if mod n 2 = 0 then res=n else res=n+1 fi}
+# }
+
+def devolver_valor_si_par_sino_siguiente(un_numero:int):
+    if un_numero%2==0:
+        return un_numero
+    else: 
+        return un_numero+1
+
+#3)
+ 
+ #problema devolvereldoblesiesmultiplo3eltriplesiesmultiplo9(n:Z):Z{
+ #  Requiere: {True}
+ #  Asegura: {((mod n 9 = 0) -> res=n*3) ʌl ((mod n 3 = 0) -> res=n*2) ʌl ((mod n 3 /= 0 ʌ mod n 9 /=0) -> res = n)) }
+ # }
+
+def devolvereldoblesiesmultiplo3eltriplesiesmultiplo9(un_numero):
+    if un_numero%9==0:
+        return un_numero*3
+    elif un_numero%3==0:
+        return un_numero*2
+    else:
+        return un_numero
+ 
+ #4)
+
+#problema discriminador_nombre(a:string):string{
+#   Requiere: {True}
+#   Asegura: {if |a|>= 5 then res="Tu nombre tiene muchas letras!" else res="Tu nombre tiene menos de 5 letras" fi}
+# }
+
+def discriminador_nombre(nombre:str):
+    if len(nombre)>=5:
+        return "Tu nombre tiene muchas letras!"
+    else: 
+        return "Tu nombre tiene menos de 5 caracteres"
+ 
+ #5)
+
+ #problema decidite(genero:string, edad:integer):String{
+ #  Requiere: {genero="M" V genero "F"}
+ #  Asegura: {if }
+ # }
