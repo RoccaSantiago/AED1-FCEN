@@ -113,7 +113,7 @@ def es_peso_util(peso:int):
 
 #3)
 
-def sirve_pino(altura:float):
+def sirve_altura(altura:float):
     if altura>= 4/3 and altura<=7/2:
         return True 
     else: 
@@ -122,12 +122,12 @@ def sirve_pino(altura:float):
 #4)
 
 def sirve_pino(altura:float,peso:int):
-    if sirve_pino(altura) and es_peso_util(peso):
+    if sirve_altura(altura) and es_peso_util(peso):
         return True
     else:
         return False
     
-#5)
+#Ejercicio 5)
 
 #1)
 
@@ -187,5 +187,103 @@ def discriminador_nombre(nombre:str):
 
  #problema decidite(genero:string, edad:integer):String{
  #  Requiere: {genero="M" V genero "F"}
- #  Asegura: {if }
+ #  Asegura: {if ((genero = M ʌ edad>=65) V (edad>=18) V (genero = F ʌ edad>=60)) then res="Anda de Vaciones" else res="Te toca trabajar"}
  # }
+
+
+def a_laburar(edad:int,sexo:str)->str:
+    if (edad>=65 and sexo =="M") or (edad<=60 and sexo=="F") or (edad<18):
+        return "Anda de vaciones"
+    else: 
+        return "Te toca trabajar"
+
+#Ejercicio 6)
+
+#1)
+
+def imprimir_1al10():
+    n=0
+    while n<=10:
+        print(n)
+        n+=1
+
+#2)
+
+def imprimir_10al40():
+    n=10
+    while n<=40:
+        print(n)
+        
+#3)
+
+def imprimir_ecox10():
+    n=0
+    while n<=10:
+        print("eco")
+        n+=1
+
+#4)
+
+def cuenta_regresiva(n:int):
+    n=n
+    while n>0:
+        print(n)
+        n-=1
+    print("Despegue")
+
+#5)
+
+def viaje_tiempo(partida,llegada:int)->str:
+    n=partida+1
+    while n>=llegada:
+        print("Viajo un año al pasado, estamos en el año {}".format(n))
+        n-=1
+
+#6)
+
+def viaje_tiempo_extremo(partida:int)->str:
+    n=partida+1
+    while n>=-384:
+        print("Viajo veinte años al pasado, estamos en el año {}".format(n))
+        n-=20
+
+#Ejercicio 7)
+
+#1)
+
+def imprimir_1al10_for()->int:
+    for i in range(1,11):
+        print(i)
+
+#2)
+
+def imprimir_10al40_for()->int:
+    for i in range(10,41,2):
+        print(i)
+
+#3)
+
+def imprimir_ecox10_for()->str:
+    for i in range(1,11):
+        print("eco")
+
+#4)
+
+def cuenta_regresiva_for(n:int):
+    for i in range(n,0,-1):
+        print(i)
+    print("Despuegue")
+
+#5)
+
+def viaje_tiempo_for(partida,llegada:int)->str:
+    for i in range(partida+1,llegada-1,-1):
+        print("Viajo un año al pasado, estamos en el año {}".format(i))
+
+#6)
+
+def viaje_tiempo_extremo_for(partida:int)->str:
+    for i in range(partida+1,-385,-20):
+        print("Viajo veinte años al pasado, estamos en el año {}".format(i))
+
+
