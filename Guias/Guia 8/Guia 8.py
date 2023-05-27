@@ -1,4 +1,5 @@
 #Ejercicio 1)
+import numpy as np
 
 #1)
 
@@ -196,4 +197,82 @@ def estudiantes()->list:
         return b
 
 #2)
+
+def sube()->list:
+    a:str=input("Que operacion queres realizar?")
+    b:tuple = []
+    while a!="X":
+        b.append((a,input("monto")))
+        a:str=input("Que operacion queres realizar?")
+    return b
+
+#3)
+
+def sieteymedio()->list:
+    a = np.random.randint(0,12)
+    c:list=[]
+    e:int=0
+    while a==8 or a==9:
+        a = np.random.randint(1,12)
+    if a==12 or a==11 or a==10:
+        e+=0.5
+        c.append(0.5)
+    b:str=input("carta o plantarse")
+    while b!="plantarse":
+        d = np.random.randint(1,12)
+        if e>7.5:
+            print("Perdiste")
+            return c
+        if e==7.5:
+            print("Ganaste")
+            return c
+        if d==12 or d==11 or d==10:
+            e+=0.5
+            c.append(0.5)
+            b:str=input("carta o plantarse")
+        else:
+            e+=d
+            c.append(d)
+            b:str=input("carta o plantarse")
+
+#Ejercicio 4)
+
+#1)
+
+def perteneceACadaUno(x:list,y:int)->list:
+    a:list=[]
+    for i in x:
+        if pertenece(y,i):
+            a.append(True)
+        else:
+            a.append(False)
+    return a
+
+#2)
+
+def esMatriz(x:list)->bool:
+    for i in x:
+        if not(len(x)==len(i)):
+            return False
+    return True
+
+#3)
+
+def filasOrdenadas(x:list)->list:
+    b:list=[]
+    for i in x:
+        if ordenados(i):
+            b.append(True)
+        else:
+            b.append(False)
+    return b
+
+
+
+        
+    
+        
+        
+
+    
 
