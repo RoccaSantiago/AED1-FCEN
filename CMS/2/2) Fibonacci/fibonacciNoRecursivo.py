@@ -15,6 +15,6 @@ def fibonacciNoRecursivo(n: int) -> int:
       an1 = an2
   return an2
 
-#if __name__ == '__main__':
-  #x = int(input())
-  #print(fibonacciNoRecursivo(x))
+if __name__ == '__main__':
+  x = int(input())
+  print(fibonacciNoRecursivo(x))

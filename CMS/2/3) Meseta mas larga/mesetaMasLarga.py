@@ -3,23 +3,23 @@ from typing import List
 # Aclaración: Debido a la versión de Python del CMS, para el tipo Lista, la sintaxis de la definición de tipos que deben usar es la siguiente:
 # l: List[int]  <--Este es un ejemplo para una lista de enteros.
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
-def mesetaMasLarga(l: List[int]) -> int :
+def mesetaMasLarga(lista:List[int]):
+  mesetalen:int=1
+  listamesetas:List[int]=[] 
+  for posicion in range(1,len(lista)):
+      if lista[posicion-1]==lista[posicion]:
+        mesetalen+=1
+      else:
+        listamesetas.append(mesetalen)
+        mesetalen:int=1
+        continue
+  listamesetas.append(mesetalen)
     
-    def contar(x:int,y:list):
-       a:int = 0
-       for i in y:
-          if i==x:
-             a+=1
-       return a
-    
-    b:List[int] = []
-    for i in l:
-       b.append(contar(i,l))
-    
-    if b==[]:
-       return 0
-    else:
-       return max(b)
+  if lista==[]:
+    return 0
+  else:
+    return max(listamesetas)
+
 
 if __name__ == '__main__':
   x = input()
