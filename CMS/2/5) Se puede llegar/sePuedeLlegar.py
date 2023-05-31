@@ -7,7 +7,8 @@ from typing import Tuple
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
 def sePuedeLlegar(origen: str, destino: str, vuelos: List[Tuple[str, str]]) -> int :
   # definir esta función
-  return 0
+  
+
 
 if __name__ == '__main__':
   origen = input()
