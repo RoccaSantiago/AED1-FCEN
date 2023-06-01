@@ -6,9 +6,26 @@ from typing import Tuple
 # t: Tuple[str,str]  <--Este es un ejemplo para una tupla de strings.
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
 def sePuedeLlegar(origen: str, destino: str, vuelos: List[Tuple[str, str]]) -> int :
-  # definir esta función
   
-
+  ciudades:List[str]=[origen]
+  vuelos1: List[Tuple[str, str]] = vuelos[:]
+  
+  if vuelos==[]:
+    return -1
+  
+  for ciudad in ciudades: 
+    while not(destino in ciudades):
+      for vuelo in vuelos1:  
+        if vuelo[0] == ciudad and not(vuelo[1] in ciudades):
+          ciudades.append(vuelo[1])
+          vuelos1.remove(vuelo)
+          break
+      break
+    
+  if not(destino in ciudades):
+    return -1
+  
+  return len(ciudades)-1 
 
 if __name__ == '__main__':
   origen = input()
