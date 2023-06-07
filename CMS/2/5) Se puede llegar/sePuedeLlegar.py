@@ -10,9 +10,6 @@ def sePuedeLlegar(origen: str, destino: str, vuelos: List[Tuple[str, str]]) -> i
   ciudades:List[str]=[origen]
   vuelos1: List[Tuple[str, str]] = vuelos[:]
   
-  if vuelos==[]:
-    return -1
-  
   for ciudad in ciudades: 
     while not(destino in ciudades):
       for vuelo in vuelos1:  
