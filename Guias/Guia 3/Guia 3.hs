@@ -49,7 +49,7 @@ maximoabsoluto x y | x>=y = absoluto x
 
 maximo3 :: Integer -> Integer -> Integer -> Integer
 maximo3 x y z | x>=y && x>=z = x
-             | y>=x && y>=z = y
+              | y>=x && y>=z = y
               | otherwise = z
 
 --d) problema algunoes0(x,y:Q): bool{
